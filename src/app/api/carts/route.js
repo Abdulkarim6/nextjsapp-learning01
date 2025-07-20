@@ -28,7 +28,6 @@ export async function GET() {
 
 export async function POST(request) {
   const data = await request.json();
-  console.log("31", data);
   
   const res = await dbConnect("cart").insertOne(data);
   revalidatePath("/carts");
