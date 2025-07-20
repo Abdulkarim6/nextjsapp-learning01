@@ -8,7 +8,6 @@ export const postCart = async(data) =>{
     try {
         const res = await dbConnect("cart").insertOne(data);
         revalidatePath("/carts");
-        console.log(res);
         
         return {
             acknowledged: res.acknowledged,
