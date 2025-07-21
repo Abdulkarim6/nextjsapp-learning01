@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { redirect } from "next/navigation";
 import { getCarts } from "../actions/carts/getCarts";
 
-export const dynamic = "force-dynamic"; //পুরো কম্পোনেন্টকে সবসময় সার্ভার থেকে render করতে
+// export const dynamic = "force-dynamic"; //পুরো কম্পোনেন্টকে সবসময় সার্ভার থেকে render করতে // don't need when data fetching using server action
 
 const CartsPage = async () => {
     // const res = await fetch(`https://nextjsfirstappjuly25.vercel.app/api/carts`,{ cache: "no-store" });

@@ -1,20 +1,36 @@
+import { getToken } from 'next-auth/jwt';
+import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server'
  
 // This function can be marked `async` if using `await` inside
-export function middleware(request) {
-      let cookie = request.cookies.get('nextjs')
-      //console.log(cookie?.value)
+export async function middleware(req) {
+      let cookie = req.cookies.get('nextjs')
+      //console.log(cookie?.value);
 
-    const dummyUser = {
-        role : "admin",
-        email : "test@gmail.com"
-    }
-    const isProductsPage = request.nextUrl.pathname.startsWith(("/products"));
-    const isAdmin = dummyUser?.role == "admin";
+      const token = await getToken({req});
+      const isTokenOk = Boolean(token) // if found token, return true. otherwise false
+      const isAdmin = token?.role == "Admin";
+      const isAdminSpecificRoute = req.nextUrl.pathname.startsWith("/carts/addToCart");
 
-    if(isProductsPage && !isAdmin)
-        return NextResponse.redirect(new URL("/", request.url))
-        // return NextResponse.rewrite(new URL("/", request.url))
+      if (isAdminSpecificRoute && !isAdmin) {
+        //** go signin page
+        //  return NextResponse.redirect(new URL("/api/auth/signin", req.url)) 
+         
+        //** After signin, goes back the pathe, where was wanted to go
+        const callbackUrl = decodeURIComponent(req.nextUrl.pathname)
+        return NextResponse.redirect(new URL(`/api/auth/signin?callbackUrl=${callbackUrl}`, req.url)) // go signin page
+      }
+
+    // const dummyUser = {
+    //     role : "admin",
+    //     email : "test@gmail.com"
+    // }
+    // const isProductsPage = req.nextUrl.pathname.startsWith("/products");
+    // const isAdmin = dummyUser?.role == "admin";
+
+    // if(isProductsPage && !isAdmin)
+    //     return NextResponse.redirect(new URL("/", req.url))
+        // return NextResponse.rewrite(new URL("/", req.url))
     
   return NextResponse.next()
 }
@@ -23,8 +39,8 @@ export function middleware(request) {
 // import { NextResponse } from 'next/server'
  
 // // This function can be marked `async` if using `await` inside
-// export function middleware(request) {
-//   return NextResponse.redirect(new URL('/', request.url))
+// export function middleware(req) {
+//   return NextResponse.redirect(new URL('/', req.url))
 // }
  
 // export const config = {
