@@ -2,7 +2,6 @@
 import dbConnect from "@/lib/dbConnect"
 
 export const postRegisterUser = async(payload) => {
-    console.log(payload);
     
     //------
      try {

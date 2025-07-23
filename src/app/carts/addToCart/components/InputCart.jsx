@@ -30,7 +30,6 @@ const InputCart = () => {
 
         // router.refresh(); for removing cache
         // const result = await res.json();
-        console.log(res);
         
     }
     return (

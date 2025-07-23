@@ -6,9 +6,9 @@ import Link from "next/link";
 import MealSearchInput from "./components/MealSearchInput";
 import Image from "next/image";
 
-const page = async ({searchParams}) => {
+const Mealspage = async ({searchParams}) => {
     const query = await searchParams;
-    console.log("query", query);
+    // console.log("query", query);
  // const [meals, setMeals] = useState([]);
  // const [searchQuery, setSearchQuery] = useState("");
 
@@ -64,4 +64,4 @@ const fetchMeals = async () =>{
   );
 };
 
-export default page;
+export default Mealspage;

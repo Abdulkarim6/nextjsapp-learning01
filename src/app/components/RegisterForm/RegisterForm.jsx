@@ -13,7 +13,6 @@ const RegisterForm = () => {
         //   console.log(name, password);
         const payload = {name, password}
         const result = await postRegisterUser(payload);
-        console.log(result);
         if(result?.acknowledged){
             alert("Account created successfully. Please Login !!!");
             router.push("/api/auth/signin")

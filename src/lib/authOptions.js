@@ -46,6 +46,15 @@ export const authOptions = {
     clientSecret: process.env.GITHUB_SECRET
   })
 ],
+/**  use if we want nextAuth default page Ui in our custom UI, just add our custom page link
+pages: {
+  signIn: '/signin', //custom page link
+  signOut: '/signout',
+  error: '/auth/error', // Error code passed in query string as ?error=
+  verifyRequest: '/auth/verify-request', // (used for check email message)
+  newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+},
+*/
 callbacks: {
   async signIn({ user, account }) {
     if(account){
@@ -82,17 +91,14 @@ callbacks: {
     //jwt calls every time of reload or render page, without signIn actions jwt() not found current login user info.
     //if changes any document via database, then need to again set user info from database via query using token info. 
     async jwt({ token, user, account, profile, isNewUser }) { 
-      if(user){
-        console.log("jwt", {token,user, account, profile, isNewUser});
-        
+      if(user){   
         token.userName = user.name;
         // token.role = user.role ;
         token.role = user.role || "user"; // Default role
         // can add others information
       }
       else {
-        console.log("jwt-else", {token});
-        // For OAuth login, fetch from DB // need if we change any document via database manually
+       // For OAuth login, fetch from DB // need if we change any document via database manually
         if (!user && token.email) {
           // const {name, email, role} = token;
           const user = await dbConnect("users").findOne({name : token?.name});

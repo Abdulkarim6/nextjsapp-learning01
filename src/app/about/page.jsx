@@ -5,9 +5,10 @@ import React from 'react';
 import style from "./about.module.css"
 
 
-const page = () => {
+const aboutPage = () => {
     const router = useRouter();
     const isLoggedIn = true;
+
     //handle logically
     const handleNavigate = () =>{
          if(isLoggedIn)
@@ -29,4 +30,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default aboutPage;
