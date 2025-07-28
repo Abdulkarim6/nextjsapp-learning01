@@ -46,3 +46,8 @@ export async function middleware(req) {
 // export const config = {
 //   matcher: '/about/:path*',
 // }
+
+
+
+// ***https://nextjs.org/docs/app/api-reference/file-conventions/middleware
+// ***https://nextjs.org/docs/app/api-reference/file-conventions/middleware#matcher

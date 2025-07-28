@@ -2,12 +2,12 @@ import React from 'react';
 
 const SlugsPage = async ({params}) => {
     const {slugs} = await params;
-  console.log(slugs);
+//   console.log(slugs);
   
     slugs.forEach(path => console.log(path));
     
     for(let path of slugs){
-        console.log(path);
+        // console.log(path);
         
     }
     return (

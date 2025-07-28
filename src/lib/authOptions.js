@@ -61,17 +61,21 @@ callbacks: {
       try {
         const {name, email, image} = user;
         const {provider, providerAccountId} = account;
+        console.log("providerAccountId", providerAccountId);
+        
         const payload = {role:"user", name, email, image, provider, providerAccountId};
   
-        const usersCollection = dbConnect("users");
-        const isExistingUser = await usersCollection.findOne({providerAccountId});
-  
+        const usersCollection = await dbConnect("users");
+        console.log("usersCollection", usersCollection);
+        const isExistingUser = await usersCollection.findOne({providerAccountId : providerAccountId});
+        console.log("isExistingUser", isExistingUser);
+        
         if(!isExistingUser){
           const res = await usersCollection.insertOne(payload);
           console.log(res);
         }
       } catch (error) {
-        console.log(error);
+        console.log("error",error);
         return false;
       }
     }
@@ -81,6 +85,7 @@ callbacks: {
       if(token){
         session.user.name = token.userName;
         session.user.role = token.role;
+        session.user.providerAccountId = token.providerAccountId;
         // can add others information
       }
       return session;
@@ -91,10 +96,13 @@ callbacks: {
     //jwt calls every time of reload or render page, without signIn actions jwt() not found current login user info.
     //if changes any document via database, then need to again set user info from database via query using token info. 
     async jwt({ token, user, account, profile, isNewUser }) { 
-      if(user){   
+      
+      if(user && account){   
+        // console.log("jwt", {  user, account });
         token.userName = user.name;
         // token.role = user.role ;
         token.role = user.role || "user"; // Default role
+        token.providerAccountId = account.providerAccountId;
         // can add others information
       }
       else {
@@ -104,6 +112,7 @@ callbacks: {
           const user = await dbConnect("users").findOne({name : token?.name});
           token.userName = user.name;
           token.role = user.role || "user";
+          token.providerAccountId = user?.providerAccountId;
         }
       }
 

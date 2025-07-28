@@ -3,11 +3,11 @@
 import dbConnect from "@/lib/dbConnect";
 import { revalidatePath } from "next/cache";
 
-export const postCart = async(data) =>{
+export const postLaptop = async(data) =>{
     
     try {
-        const res = await dbConnect("cart").insertOne(data);
-        revalidatePath("/carts");
+        const res = await dbConnect("laptops").insertOne(data);
+        revalidatePath("/laptops");
         
         return {
             acknowledged: res.acknowledged,

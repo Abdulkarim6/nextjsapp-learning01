@@ -1,22 +1,22 @@
 "use client"
-import { postCart } from "@/app/actions/carts/postCarts";
+import { postLaptop } from "@/app/actions/laptops/postLaptop";
 import { useRouter } from "next/navigation";
 
-const InputCart = () => {
+const LaptopInputForm = () => {
     const router = useRouter();
     const handleSubmit = async (e) =>{
         e.preventDefault();
         const form = e.target;
         const Name = form?.laptop?.value;
         const payload = {Name};
-        console.log(payload);
+        // console.log(payload);
         
-        const res = await postCart(payload);
+        const res = await postLaptop(payload);
 
-        // const res = await fetch("https://nextjsfirstappjuly25.vercel.app/api/carts", {
+        // const res = await fetch("https://nextjsfirstappjuly25.vercel.app/api/laptops", {
         
         // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        // const res = await fetch(`${baseUrl}/api/carts`, {
+        // const res = await fetch(`${baseUrl}/api/laptops`, {
         //     method : "POST",
         //     body : JSON.stringify(payload),
         //     headers : {
@@ -26,7 +26,7 @@ const InputCart = () => {
         
         form.reset();
         //alert("Laptop added");
-        router.push("/carts");
+        router.push("/laptops");
 
         // router.refresh(); for removing cache
         // const result = await res.json();
@@ -42,4 +42,4 @@ const InputCart = () => {
     );
 };
 
-export default InputCart;
+export default LaptopInputForm;

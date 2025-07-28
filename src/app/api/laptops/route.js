@@ -22,14 +22,14 @@ import { revalidatePath } from "next/cache";
 */}
 
 export async function GET() {
-  const data = await dbConnect("cart").find({}).toArray();
+  const data = await dbConnect("laptops").find({}).toArray();
   return Response.json( data )
 }
 
 export async function POST(request) {
   const data = await request.json();
   
-  const res = await dbConnect("cart").insertOne(data);
-  revalidatePath("/carts");
+  const res = await dbConnect("laptops").insertOne(data);
+  revalidatePath("/laptops");
   return Response.json( res )
 }

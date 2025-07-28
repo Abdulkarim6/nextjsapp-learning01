@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/authOptions";
 
 const Navber = async () => {
     const session = await getServerSession(authOptions);
-    // console.log("session-from-Navber",session);
+    
     
 
   return (
@@ -18,11 +18,12 @@ const Navber = async () => {
         <ul className="menu menu-horizontal px-1">
             <li><Link href="/">home</Link></li> 
             <li><Link href="/products">Products</Link></li>
+            <li><Link href="/productsBookingCart">ProductsCart</Link></li>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/users">Users</Link></li>
             <li><Link href="/meals">Meals</Link></li>
-            <li><Link href="/carts">CartsFromDb</Link></li>
-            <li><Link href="/carts/addToCart">AddToCart</Link></li>
+            <li><Link href="/laptops">LaptopsFromDb</Link></li>
+            <li><Link href="/laptops/addLaptopToCart">AddLaptopToCart</Link></li>
             {
               session?.user?.role == "Admin" ? 
               <li><Link href="/adminDashboard">Dashboard</Link></li>
