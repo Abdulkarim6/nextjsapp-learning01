@@ -7,8 +7,6 @@ import { authOptions } from "@/lib/authOptions";
 const Navber = async () => {
     const session = await getServerSession(authOptions);
     
-    
-
   return (
     <div className="navbar bg-primary text-primary-content">
       <div className="navbar-start">

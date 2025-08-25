@@ -98,5 +98,14 @@
 * then "session" function stored user info from token.
 * signIn calls when an user login with social like google and github.
 
-
+## cookies or token send in server from client
+19. 
+* does not have directly cookies access of server components.
+* pass headers option with fetching api for access cookies/token;
+   const res = await fetch("https://dummyjson.com/products", {
+    neaders : new Headers(await headers())
+   });
+   why do?
+   when need user information using nextJs function 'getServerSession(authOptions)'.
+   getServerSession function collects user info using token from cookies.
 

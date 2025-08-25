@@ -17,7 +17,7 @@ import { revalidatePath } from "next/cache";
     }
    
     return Response.json({ data })
-    //will be found data by visit the route(http://localhost:3000/api/items)
+    //will be found data by visit the route on browser (http://localhost:3000/api/laptops)
   }
 */}
 
