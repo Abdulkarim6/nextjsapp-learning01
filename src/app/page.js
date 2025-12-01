@@ -1,4 +1,5 @@
-import { authOptions } from "@/lib/authOptions";
+
+import { authOptions } from "../lib/authOptions";
 import UserInfoShow from "./components/UserInfoShow/UserInfoShow";
 import { getServerSession } from "next-auth/next"
 

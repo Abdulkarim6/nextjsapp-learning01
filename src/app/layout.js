@@ -4,6 +4,7 @@ import Navber from "./components/Navber/Navber";
 import Footer from "./components/Footer/Footer";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -41,9 +42,9 @@ export default function RootLayout({ children }) {
              <div className="mt-5">
                 {children}
              </div>
-             <div className="sticky top-full">
+             {/* <div className="sticky top-full">
                <Footer/>
-             </div>
+             </div> */}
            </section>
          </body>
       </NextAuthSessionProvider>

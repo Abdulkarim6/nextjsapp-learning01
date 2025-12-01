@@ -11,7 +11,8 @@ function dbConnect (collectionName){
       }
     });
 
-  return client.db("tastyYummy").collection(collectionName);
+  // return client.db("tastyYummy").collection(collectionName);
+  return client.db("happyShop").collection(collectionName);
 }
 
 export default dbConnect;
